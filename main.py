@@ -28,15 +28,15 @@ def SHOWmaze():
         location = ""
         for x in range(MAZE_WIDTH):
             if x == player_x and y == player_y:
-                location += "✿"
+                location += "✿ "
                 # theres allegedly no unicode person so placehold is a flower lol
             elif x == exit_x and y == exit_y:
                 location += "E" # e for exit bc only 1 char should be added
-            elif maze[y][x] == "0":
-                location += "▩" # idk man looked cute
+            elif maze[y][x] == "O":
+                location += "▩ " # idk man looked cute
             else:
-                location += " "
-            print(location)
+                location += "  "
+        print(location)
 
 SHOWmaze()
-# ok so its printing nothing
+# it is now printing something, but not enough of something
