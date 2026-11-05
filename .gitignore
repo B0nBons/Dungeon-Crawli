@@ -1,0 +1,6 @@
+.cypthon
+__pycache__
+.pyc
+.venv
+.env
+.vscode
