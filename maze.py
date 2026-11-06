@@ -1,21 +1,24 @@
 import random
 
-MAZE_WIDTH = 15
-MAZE_HEIGHT = 15
+MAZE_WIDTH = 45
+MAZE_HEIGHT = 45
 # Maze should always be >15 otherwise the mazes genuinely suck
+# so we are in fact gonna have the maze be a MINUMUIM of 51 because i wanna add lots of stuff
+# nevermind 51 is too big to fit on my screen
+# weird feeling that large mazes might not always have a reachable exit (it took me FIVE mins to figure out one)
 
-maze = []
-
-for ROW in range(MAZE_HEIGHT):
-    row = []
-    for THINGINROW in range(MAZE_WIDTH):
-        row.append("O")
-    maze.append(row)
-
+def init_maze():
+    maze = []
+    for ROW in range(MAZE_HEIGHT):
+        row = []
+        for THINGINROW in range(MAZE_WIDTH):
+            row.append("O")
+        maze.append(row)
+    return maze
 # Setup base maze of _ width and _ height (can change later/make into a func)
 
 # will do custom start/endpoint later (so that endpoint is alwas=ys very far from start)
-def make_maze(x=1,y=1):
+def make_maze(maze, x=1,y=1):
     # xy is just starting location
     maze[y][x] = " "
     goto = [
@@ -33,10 +36,10 @@ def make_maze(x=1,y=1):
             if 0 < check_y < (MAZE_HEIGHT - 1):
                 if maze[check_y][check_x] == "O":
                     maze[y + direction[1] // 2][x + direction[0] // 2] = "  "
-                    make_maze(check_x, check_y)
+                    make_maze(maze, check_x, check_y)
     return maze
 
-def show_maze(player_x, player_y, exit_x, exit_y):
+def show_maze(player_x, player_y, exit_x, exit_y, maze):
     for y in range(MAZE_HEIGHT):
         location = ""
         for x in range(MAZE_WIDTH):

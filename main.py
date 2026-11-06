@@ -1,5 +1,6 @@
 import playsound
-from maze import make_maze, show_maze, MAZE_WIDTH, MAZE_HEIGHT
+from maze import make_maze, show_maze, init_maze, MAZE_WIDTH, MAZE_HEIGHT
+from log import terminal
 
 # it is now printing something, but not enough of something
 
@@ -10,13 +11,20 @@ player_startY = 1
 exit_X = MAZE_WIDTH - 2
 exit_Y = MAZE_HEIGHT - 2
 
-maze = make_maze()
 
 # this is the MAIN game loop (we love while true)
 def mainLoop():
     global player_startY, player_startX, exit_X, exit_Y
+    maze = make_maze(init_maze()) 
+    # like an onion    
     while True:
-        show_maze(player_startX, player_startY, exit_X, exit_Y)
+        # something like next level screen
+
+        # idk
+
+        show_maze(player_startX, player_startY, exit_X, exit_Y, maze)
+        terminal()
+        # now i get why we want short variable names, my fingers HURT
         if player_startX == exit_X and player_startY == exit_Y:
             print("yippee")
 
