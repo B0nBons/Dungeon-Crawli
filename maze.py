@@ -37,6 +37,25 @@ def make_maze(maze, x=1,y=1):
                 if maze[check_y][check_x] == "O":
                     maze[y + direction[1] // 2][x + direction[0] // 2] = "  "
                     make_maze(maze, check_x, check_y)
+    
+    return maze
+
+def breakable_wall(maze):
+    total_walls = 3
+    walls = 0
+    allowed_spots = []
+    for y in range(MAZE_HEIGHT):
+        for x in range(MAZE_WIDTH):
+            if maze[y][x] == "O":
+                allowed_spots.append([x,y])
+    random.shuffle(allowed_spots)
+
+    for x, y in allowed_spots:
+        if walls != total_walls:
+            maze[y][x] = "B" # for broken (top ten sad)
+            walls += 1
+        else:
+            break
     return maze
 
 def show_maze(player_x, player_y, exit_x, exit_y, maze):
@@ -50,6 +69,8 @@ def show_maze(player_x, player_y, exit_x, exit_y, maze):
                 location += "E " # e for exit bc only 1 char should be added
             elif maze[y][x] == "O":
                 location += "▩ " # idk man looked cute
+            elif maze[y][x] == "B":
+                location += "B "
             else:
                 location += "  "
         print(location)
