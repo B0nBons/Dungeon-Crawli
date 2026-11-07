@@ -6,8 +6,16 @@ class Player():
         self.health = 100
         self.max_health = 100
         self.potions = 3
+        # healing and health baased stuff
+
         self.weaponDMG = 5
         self.wall_breaks = 2
+        # general stuff that idk how to categorize
+        # so terra isnt loading for me so this is gonna be an insane commit devlog thing lmao
+
+        self.luck_chest = 5
+        self.luck_attack = 20
+        # rng gambling factors
 
     def take_damage(self, damage):
         self.health -= damage
@@ -51,7 +59,7 @@ class Player():
                 confirm = input("The pickaxe would be more than enough to break this wall... Break wall? (y/n)")
                 if confirm.lower() == "y" or confirm.lower() == "yes":
                     maze[targety][targetx] = "  "
-                    self.wallbreaks -= 1
+                    self.wall_breaks -= 1
                     print("The wall quickly crumbles to dust.")
                 elif confirm.lower() == "n" or confirm.lower() == "no":
                     print("You spare your pickaxe from destruction.")
@@ -59,10 +67,4 @@ class Player():
                     print("You decide to play by your own rules. However, you still must conform to choosing (y/n)")
         else:
             print("Your pickaxe is in need of repair. Using it now would be idiotic.")
-        # should only trigger when wall breaks is none
-        
-        # i think this is gonna need me to add in code in the dfs algo to add 1/10 chance or som of a breakable wall
-        # pass until thats figured out
 
-        # i actual hate this repetitive ahs block so im gonna redo it
-        # im trying to code rn and for some reason my entire hand/arm keeps on just pulsing or som when i type?? idk, but it HURTS

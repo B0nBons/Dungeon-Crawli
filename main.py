@@ -57,7 +57,8 @@ def mainLoop():
         if maze[attempt_moveY][attempt_moveX] == "O":
             print("The wall is still there. No matter how much you attempt to walk through it, it refuses to move.")
 
-        elif maze[attempt_moveY][attempt_moveX] == "▢▢": # guys its not acting like a wall help
+        # yes guys it works !!! :D
+        elif maze[attempt_moveY][attempt_moveX] == "B": # guys its not acting like a wall help
             print("A wall. Made of rocks, it seems like it would fall with a strong hit...")
             little_timmy.wall_break(attempt_moveX, attempt_moveY, maze)
 
