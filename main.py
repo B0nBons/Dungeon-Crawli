@@ -1,6 +1,7 @@
 import playsound
 from maze import make_maze, show_maze, init_maze, breakable_wall, MAZE_WIDTH, MAZE_HEIGHT
 from log import terminal
+from player import Player
 
 # it is now printing something, but not enough of something
 
@@ -15,7 +16,8 @@ exit_Y = MAZE_HEIGHT - 2
 # this is the MAIN game loop (we love while true)
 def mainLoop():
     global player_startY, player_startX, exit_X, exit_Y
-    maze = make_maze(breakable_wall(init_maze()))
+    maze = breakable_wall(make_maze((init_maze())))
+    little_timmy = Player()
     # like an onion    
     while True:
         # something like next level screen
@@ -53,7 +55,12 @@ def mainLoop():
             print("Invalid option (w/a/s/d)")
 
         if maze[attempt_moveY][attempt_moveX] == "O":
-            print("That is in fact a wall")
+            print("The wall is still there. No matter how much you attempt to walk through it, it refuses to move.")
+
+        elif maze[attempt_moveY][attempt_moveX] == "▢▢": # guys its not acting like a wall help
+            print("A wall. Made of rocks, it seems like it would fall with a strong hit...")
+            little_timmy.wall_break(attempt_moveX, attempt_moveY, maze)
+
         else:
             player_startX = attempt_moveX
             player_startY = attempt_moveY

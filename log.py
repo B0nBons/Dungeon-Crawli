@@ -4,7 +4,7 @@ from player import Player
 import time
 
 def terminal(character, turns):
-    print("-" * MAZE_WIDTH)
+    print("-" * 50)
     # so this is actually way too small so thatll be figured out later
     print(f"Current HP: {character.health}")
     print(f"Current Potions: {character.potions}")
