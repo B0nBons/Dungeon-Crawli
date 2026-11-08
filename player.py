@@ -62,10 +62,13 @@ class Player():
                     print("The wall crumbles to ashes, taking your pickaxe with it.")
                 elif confirm.lower() == "n" or confirm.lower() == "no":
                     print("You save your pickaxe for another day.")
+                    return False
                 else:
                     print("You mumble gibberish. You must conform to choosing (y/n)")
+                    return False
             else:
                 print("Seems reinforced. Best to not hit that.")
+                return False
                 # This seemingly will not trigger
 
         elif self.wall_breaks > 1:
@@ -77,10 +80,14 @@ class Player():
                     print("The wall quickly crumbles to dust.")
                 elif confirm.lower() == "n" or confirm.lower() == "no":
                     print("You spare your pickaxe from destruction.")
+                    return False
                 else:
                     print("You decide to play by your own rules. However, you still must conform to choosing (y/n)")
+                    return False
         else:
             print("Your pickaxe is in need of repair. Using it now would be idiotic.")
+            return False
+        # I know the amount of return False statements is almost excessive, but theres genuinely no other way than that to make sure the player doesnt become a ghost and just walk through walls
 
     def inventory(self, add_item=False, remove_item=False):
         # if both keyargs are false, then assume player is gonna check inv

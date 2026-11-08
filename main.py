@@ -45,6 +45,7 @@ def mainLoop():
                 level += 1
                 break
             DONOTMOVE = None
+            WALL_BROKEN = None
             movement = input("WASD (Up/Down/Left/Right) / P (Potion) / I (Inventory) ").lower()
             attempt_moveX = player_startX
             attempt_moveY = player_startY
@@ -62,7 +63,7 @@ def mainLoop():
 
             if movement == "p":
                 little_timmy.use_potion()
-                turns += 1
+                # no clue why but potions incr turn count by 2???? i cant figure out where the other turn count incr is
 
             if movement == "i": # i should rename movement bc its not even movemnt now, its just all the funcs lmao
                 little_timmy.inventory()
@@ -77,13 +78,16 @@ def mainLoop():
             # yes guys it works !!! :D
             if maze[attempt_moveY][attempt_moveX] == "B":
                 print("A wall. Made of rocks, it seems like it would fall with a strong hit...")
-                little_timmy.wall_break(attempt_moveX, attempt_moveY, maze)
-                turns += 1
+                if little_timmy.wall_break(attempt_moveX, attempt_moveY, maze) == False:
+                    WALL_BROKEN = False
+                # seems i overadded turns in many spots
 
-            if DONOTMOVE != True:
+            if DONOTMOVE != True and WALL_BROKEN == None:
                 player_startX = attempt_moveX
                 player_startY = attempt_moveY
                 turns += 1
+            elif WALL_BROKEN == False:
+                pass
 
             if little_timmy.alive != True:
                 break
