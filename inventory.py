@@ -1,4 +1,4 @@
-# idk
+# might have to chance the class since this is kkinda more like a weapon glossary/tracker kinda thing?
 
 class Inventory():
     def __init__(self):
@@ -39,6 +39,7 @@ class Inventory():
         }
     def show(self):
         pass
+    # time constraints so i am curently using a kinda bad dict inv for player in the player class
     def add_item(self):
         pass
     def use_item(self):
