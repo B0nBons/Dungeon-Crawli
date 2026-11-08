@@ -3,13 +3,14 @@ from maze import MAZE_HEIGHT, MAZE_WIDTH
 from player import Player
 import time
 
-def terminal(character, turns):
+def terminal(character, turns, level):
+    print(f"LEVEL {level}")
     print("-" * 50)
     print(f"Turn {turns}")
-    print(f"Current HP: {tim.health}")
-    print(f"Current Potions: {tim.potions}")
-    print(f"Current Weapon Damage: {tim.weaponDMG}")
-    print(f"Pickaxe Durability: {tim.wall_breaks}")
+    print(f"Current HP: {character.health}")
+    print(f"Current Potions: {character.potions}")
+    print(f"Current Weapon Damage: {character.weaponDMG}")
+    print(f"Pickaxe Durability: {character.wall_breaks}")
 
 tim = Player()
 #terminal(tim)

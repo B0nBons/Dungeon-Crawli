@@ -11,9 +11,9 @@ class Player():
         self.weaponDMG = 5
         self.wall_breaks = 2
         self.items = {
-            self.potions : 3, # swapping vars to be in an items list to improve organisation
-            self.weaponDMG : 5,
-            self.wall_breaks : 2 
+            "potions" : self.potions,
+            "weapon_dmg" : self.weaponDMG,
+            "pick_dur" : self.wall_breaks
         }
         # general stuff that idk how to categorize
         # so terra isnt loading for me so this is gonna be an insane commit devlog thing lmao
@@ -22,9 +22,13 @@ class Player():
         self.luck_attack = 20
         # rng gambling factors
 
+        self.alive = True
+
     def take_damage(self, damage):
         self.health -= damage
         if self.health <= 0:
+            self.health = 0
+            self.alive = False # so it can end the game loop
             print("Fatal hit. Game OVER")
         else:
             print(f"Took {damage} damage")
@@ -44,6 +48,8 @@ class Player():
         elif 1 <= self.potions <= 3:
             print(f"Better alive with no potions than the latter. Healed {heal} HP.")
             self.health += heal
+        elif self.potions <= 0:
+            print(f"You have no potions.")
         self.potions -= 1
 
     def wall_break(self, targetx, targety, maze):
@@ -52,7 +58,7 @@ class Player():
                 confirm = input("The pickaxe cannot take much more. Break anyway? (y/n)")
                 if confirm.lower() == "y" or confirm.lower() == "yes":
                     maze[targety][targetx] = "  "
-                    self.wallbreaks -= 1
+                    self.wall_breaks -= 1
                     print("The wall crumbles to ashes, taking your pickaxe with it.")
                 elif confirm.lower() == "n" or confirm.lower() == "no":
                     print("You save your pickaxe for another day.")
