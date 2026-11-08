@@ -11,6 +11,7 @@ def terminal(character, turns, level):
     print(f"Current Potions: {character.potions}")
     print(f"Current Weapon Damage: {character.weaponDMG}")
     print(f"Pickaxe Durability: {character.wall_breaks}")
+    print("-" * 50)
 
 tim = Player()
 #terminal(tim)

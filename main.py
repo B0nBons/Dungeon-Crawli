@@ -1,5 +1,5 @@
 import playsound
-from maze import make_maze, show_maze, init_maze, breakable_wall, MAZE_WIDTH, MAZE_HEIGHT
+from maze import make_maze, show_maze, init_maze, breakable_wall, change_maze_dims, MAZE_WIDTH, MAZE_HEIGHT
 from log import terminal
 from player import Player
 
@@ -13,7 +13,7 @@ exit_X = MAZE_WIDTH - 2
 exit_Y = MAZE_HEIGHT - 2
 
 def new_dungeon():
-    return breakable_wall(make_maze(init_maze))
+    return breakable_wall(make_maze(init_maze()))
 # to make it actually playable and a loop, we need to have a func that can just spam mazes
 
 # this is the MAIN game loop (we love while true)
@@ -25,10 +25,14 @@ def mainLoop():
 
     while little_timmy.alive == True:
         # something like next level screen
+        change_maze_dims(2,2)
         maze = new_dungeon()
         level_completed = False
         player_startX = 1
         player_startY = 1
+
+        if level_completed == True:
+            level_completed = False
 
         while True:
             show_maze(player_startX, player_startY, exit_X, exit_Y, maze)
@@ -37,8 +41,11 @@ def mainLoop():
             # now i get why we want short variable names, my fingers HURT
             if player_startX == exit_X and player_startY == exit_Y:
                 print(f"Level {level} of many has been completed")
+                level_completed = True
+                level += 1
+                break
 
-            movement = input("WASD (Up/Down/Left/Right) / P (Potion) / I (Inventory)").lower()
+            movement = input("WASD (Up/Down/Left/Right) / P (Potion) / I (Inventory) ").lower()
             attempt_moveX = player_startX
             attempt_moveY = player_startY
 
@@ -49,7 +56,8 @@ def mainLoop():
             elif movement == "a":
                 attempt_moveX -= 1
             elif movement == "d":
-                attempt_moveX += 1 
+                attempt_moveX += 1
+
             # might make this into a func just to keep the main loop organised, but well see
 
             elif movement == "p":
@@ -59,9 +67,11 @@ def mainLoop():
             elif movement == "i": # i should rename movement bc its not even movemnt now, its just all the funcs lmao
                 little_timmy.inventory()
                 garb = input("Press enter to continue...")
+                # ok so i have NO clue why, but for some reason the turn count increases after you check inv??????
 
-            if maze[attempt_moveY][attempt_moveX] == "O":
+            elif maze[attempt_moveY][attempt_moveX] == "O": # i think this being an if statement was making the turn count increase erreneously???? no idea but it works as intended now
                 print("The wall is still there. No matter how much you attempt to walk through it, it refuses to move.")
+                # i dont like how this line shows on the top when it goes to the next turn but idk a fix so ig ill deal w later
 
             # yes guys it works !!! :D
             elif maze[attempt_moveY][attempt_moveX] == "B": # guys its not acting like a wall help
@@ -72,13 +82,15 @@ def mainLoop():
             else:
                 player_startX = attempt_moveX
                 player_startY = attempt_moveY
+                turns += 1
 
             if little_timmy.alive != True:
                 break
 
-        print("GAME OVER") # lol
-        print(f"You reached level {level}")
-        print(f"Total turns: {turns}")
+        if little_timmy.alive == False:
+            print("GAME OVER") # lol
+            print(f"You reached level {level}")
+            print(f"Total turns: {turns}")
 
         # maybe show stats or feats
 

@@ -11,9 +11,9 @@ class Player():
         self.weaponDMG = 5
         self.wall_breaks = 2
         self.items = {
-            "potions" : self.potions,
-            "weapon_dmg" : self.weaponDMG,
-            "pick_dur" : self.wall_breaks
+            "Potions" : self.potions,
+            "Weapon Damage" : self.weaponDMG,
+            "Pickaxe Durability" : self.wall_breaks # make keys cap so they print nice and i dont have to deal with it
         }
         # general stuff that idk how to categorize
         # so terra isnt loading for me so this is gonna be an insane commit devlog thing lmao
@@ -85,4 +85,5 @@ class Player():
     def inventory(self, add_item=False, remove_item=False):
         # if both keyargs are false, then assume player is gonna check inv
         if add_item == False and remove_item == False:
-            print(self.items)
+            for key, val in self.items.items(): # top ten WORST names omg
+                print(f"{key} : {val}")

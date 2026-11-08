@@ -1,13 +1,20 @@
 import random
 
-MAZE_WIDTH = 25
-MAZE_HEIGHT = 25
+MAZE_WIDTH = 13
+MAZE_HEIGHT = 13
 # ok so testing maze size is gonna be 25 since otherwise it wont fit on my screen
 # Maze should always be >15 otherwise the mazes genuinely suck
 # so we are in fact gonna have the maze be a MINUMUIM of 51 because i wanna add lots of stuff
 # weird feeling that large mazes might not always have a reachable exit (it took me FIVE mins to figure out one)
 
+def change_maze_dims(width_change, height_change):
+    global MAZE_HEIGHT, MAZE_WIDTH
+    MAZE_WIDTH += width_change
+    MAZE_HEIGHT += height_change
+    return [MAZE_WIDTH, MAZE_HEIGHT]
+
 def init_maze():
+    global MAZE_WIDTH, MAZE_HEIGHT
     maze = []
     for ROW in range(MAZE_HEIGHT):
         row = []
