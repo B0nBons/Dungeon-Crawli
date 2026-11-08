@@ -10,6 +10,11 @@ class Player():
 
         self.weaponDMG = 5
         self.wall_breaks = 2
+        self.items = {
+            self.potions : 3, # swapping vars to be in an items list to improve organisation
+            self.weaponDMG : 5,
+            self.wall_breaks : 2 
+        }
         # general stuff that idk how to categorize
         # so terra isnt loading for me so this is gonna be an insane commit devlog thing lmao
 
@@ -51,8 +56,11 @@ class Player():
                     print("The wall crumbles to ashes, taking your pickaxe with it.")
                 elif confirm.lower() == "n" or confirm.lower() == "no":
                     print("You save your pickaxe for another day.")
+                else:
+                    print("You mumble gibberish. You must conform to choosing (y/n)")
             else:
                 print("Seems reinforced. Best to not hit that.")
+                # This seemingly will not trigger
 
         elif self.wall_breaks > 1:
             if maze[targety][targetx] == "B":
@@ -68,3 +76,7 @@ class Player():
         else:
             print("Your pickaxe is in need of repair. Using it now would be idiotic.")
 
+    def inventory(self, add_item=False, remove_item=False):
+        # if both keyargs are false, then assume player is gonna check inv
+        if add_item == False and remove_item == False:
+            print(self.items)

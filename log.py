@@ -5,12 +5,13 @@ import time
 
 def terminal(character, turns):
     print("-" * 50)
-    # so this is actually way too small so thatll be figured out later
-    print(f"Current HP: {character.health}")
-    print(f"Current Potions: {character.potions}")
-    print(f"Current Weapon Damage: {character.weaponDMG}")
-
+    print(f"Turn {turns}")
+    print(f"Current HP: {tim.health}")
+    print(f"Current Potions: {tim.potions}")
+    print(f"Current Weapon Damage: {tim.weaponDMG}")
+    print(f"Pickaxe Durability: {tim.wall_breaks}")
 
 tim = Player()
 #terminal(tim)
 # terminal tim
+# i keep making myself cry during my speeches at this tournament, i am NOT hittin finals lmao
