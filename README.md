@@ -9,4 +9,6 @@ Quick Note!
 This will likely only be playable on linux systems, since I do NOT want to setup a windows packager on github actions!!!
 
 ## How to Play
-Run the linux binary. Some linux distros will require you to open the terminal, write "chmod +x ./BINARY" where BINARY is whatever the binary is called when it downloads to your laptop.
+Run the linux binary. Some linux distros will require you to open the terminal, write "chmod +x ./BINARY" where BINARY is whatever the binary is called when it downloads to your laptop. Then, run ./BINARY to run the game. It is terminal based! (inherently, the binary is just called main)
+
+![how the game looks](<Screenshot 2026-11-08 3.54.42 PM.png>)
