@@ -6,11 +6,34 @@ class Inventory():
             "potions" : 3,
             "pick_durability" : 2,
             "weapons_attained" : { # weapon : obtained, then weapon index will include weapon : damage stats
-                "Stick" : True,
-                "Crumbling Stone Sword" : False,
-                "Blunt Rapier" : False,
-                "Trainee's First Sword" : False,
-                "Polished Dagger" : False,
+                "Stick" : {
+                    "obtained" : True,
+                    "damage" : 2
+                },
+            "Crumbling Stone Sword" : {
+                    "obtained" : False,
+                    "damage" : 4
+                },
+            "Blunt Rapier" : {
+                    "obtained" : False,
+                    "damage" : 7
+                },
+            "Trainee's First Sword" : {
+                    "obtained" : False,
+                    "damage" : 10
+                },
+            "Polished Dagger" : {
+                    "obtained" : False,
+                    "damage" : 14
+                },
+            "Steel Sword" : {
+                "obtained" : False,
+                "damage" : 17
+            },
+            "Heavy Claymore" : {
+                "obtained" : False,
+                "damage" : 20 # may add a speed debuff modifier
+            },
 
             }
         }
