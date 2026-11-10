@@ -1,4 +1,4 @@
-import playsound
+# HAHAHA GOODBYE PLAYSOUND I HATE YOU import playsound
 from maze import make_maze, show_maze, init_maze, breakable_wall, change_maze_dims, MAZE_WIDTH, MAZE_HEIGHT
 from log import terminal
 from player import Player
