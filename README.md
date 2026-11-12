@@ -20,11 +20,11 @@ Then, to start the game, run the following
 ```
 
 ## How to Play
-<<<<<<< HEAD
+
 Run the linux binary. Some linux distros will require you to open the terminal, write "chmod +x ./BINARY" where BINARY is whatever the binary is called when it downloads to your laptop. Then, run ./BINARY to run the game. It is terminal based! (inherently, the binary is just called main)
 
 ![how the game looks](<Screenshot 2026-11-08 3.54.42 PM.png>)
-=======
+
 As soon as you run the binary, you'll see a little flower stuck in a maze. That flower is YOU! Your goal is to get to the exit of the maze in as few turns as possible. Some things to know:
 
 ▩ - This is a wall. Sadly, your game character still hasn't learned how to walk through walls, so they must be avoided.
@@ -35,4 +35,3 @@ Currently, the game does have an inventory system, as well as math logic for loo
 ## Tech Stack
 This was written fully in Python (3.14)! It also currently uses:
 - random (for many functions, such as maze generation, shuffling, and more)!
->>>>>>> 66d24e4410169fd59a1346b9aeabde86dfd4c288
