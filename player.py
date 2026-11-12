@@ -12,7 +12,7 @@ class Player():
         self.wall_breaks = 2
         self.items = {
             "Potions" : self.potions,
-            "Weapon Damage" : self.weaponDMG,
+            "Weapon Damage" : self.weaponDMG, # change this to the chestloot weapon name, and then make a func that can translate name to dmg
             "Pickaxe Durability" : self.wall_breaks # make keys cap so they print nice and i dont have to deal with it
         }
         # general stuff that idk how to categorize
@@ -89,8 +89,27 @@ class Player():
             return False
         # I know the amount of return False statements is almost excessive, but theres genuinely no other way than that to make sure the player doesnt become a ghost and just walk through walls
 
-    def inventory(self, add_item=False, remove_item=False):
+    def inventory(self, add_item=False, remove_item=False, amount_add = 1, amount_remove = 1):
         # if both keyargs are false, then assume player is gonna check inv
         if add_item == False and remove_item == False:
             for key, val in self.items.items(): # top ten WORST names omg
                 print(f"{key} : {val}")
+
+        if add_item == False and remove_item == True:
+            if remove_item in self.items and self.items[remove_item] >= amount_remove:
+                if (self.items[remove_item] - amount_remove) == 0:
+                    print(f"You dropped your last {remove_item}.")
+                    del self.items(remove_item)
+            else:
+                self.items[remove_item] -= amount_remove
+                print(f"You drop {amount_remove} {remove_item}. You now hold {self.items[remove_item]} {remove_item}.")
+
+        if add_item == True and remove_item == False:
+            if add_item in self.items:
+                self.items[add_item] += amount_add
+                print(f"You picked up {amount_add} {add_item}.")
+            elif add_item not in self.items:
+                self.items[add_item] = amount_add
+                print(f"You picked up {amount_add} {add_item}.")
+        # NOTE PLEASE OH PLEASE REMOVE ALL MY SILLY AHS COMMENTS
+        # NOTE I ALSO NEED TO SETTLE ON A CRAFTING SYSTEM
