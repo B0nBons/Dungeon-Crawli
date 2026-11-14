@@ -1,48 +1,56 @@
-# might have to chance the class since this is kkinda more like a weapon glossary/tracker kinda thing?
+# yeah so its not a class now lol
+# from SOMETHING import owned weapons
+# actually nvm im a chud
 
-class Inventory():
-    def __init__(self):
-        self.inv = {
-            "potions" : 3,
-            "pick_durability" : 2,
-            "weapons_attained" : { # weapon : obtained, then weapon index will include weapon : damage stats
-                "Stick" : {
-                    "obtained" : True,
-                    "damage" : 2
-                },
-            "Crumbling Stone Sword" : {
-                    "obtained" : False,
-                    "damage" : 4
-                },
-            "Blunt Rapier" : {
-                    "obtained" : False,
-                    "damage" : 7
-                },
-            "Trainee's First Sword" : {
-                    "obtained" : False,
-                    "damage" : 10
-                },
-            "Polished Dagger" : {
-                    "obtained" : False,
-                    "damage" : 14
-                },
-            "Steel Sword" : {
-                "obtained" : False,
-                "damage" : 17
-            },
-            "Heavy Claymore" : {
-                "obtained" : False,
-                "damage" : 20 # may add a speed debuff modifier
-            },
+weapons = {
+    "Stick" : {
+        "obtained" : True,
+        "damage" : 2,
+        "rarity" : "common"},
+        
+    "Crumbling Stone Sword" : {
+        "obtained" : False,
+        "damage" : 4,
+        "rarity" : "common"}, # i hate reformatting, ts is genuinely waste of time
 
-            }
-        }
-    def show(self):
-        pass
-    # time constraints so i am curently using a kinda bad dict inv for player in the player class
-    def add_item(self):
-        pass
-    def use_item(self):
-        pass
-    def trash_item(self):
-        pass
+    "Blunt Rapier" : {
+        "obtained" : False,
+        "damage" : 7,
+        "rarity" : "uncommon"},
+
+    "Trainee's First Sword" : {
+        "obtained" : False,
+        "damage" : 10,
+        "rarity" : "uncommon"},
+
+    "Polished Dagger" : {
+        "obtained" : False,
+        "damage" : 14,
+        "rarity" : "rare"},
+
+    "Steel Sword" : {
+        "obtained" : False,
+        "damage" : 17,
+        "rarity" :"rare"},
+
+    "Heavy Claymore" : {
+        "obtained" : False,
+        "damage" : 20,
+        "rarity" : "epic"}} # REMEMBER THE SPEED VAL BEING RELEVANT
+
+def get_damage(weapon):
+    if weapon in weapons:
+        return weapons[weapon]["damage"]
+    else:
+        print("Oddly enough, it appears as if this weapon is not a weapon at all.")
+        return IndexError
+    # i lowk dont know if you can just return errs like this but who knows
+
+def show_obtained_weapons(owned):
+    print("- - - OBTAINED WEAPONS - - -")
+    # we ARE gettin slimed out
+    for weapon, info in weapons.items(): # i miss items.items
+        if weapon in owned:
+            print(f"{weapon}: {info['damage']} damage. {info['rarity'].upper()}")
+        else:
+            pass

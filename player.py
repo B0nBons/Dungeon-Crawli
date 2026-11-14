@@ -1,5 +1,6 @@
 # we are so back
 # idk if i wanna class player or func player, so fn its GOnna be a class to make it 
+from inventory import weapons, get_damage, show_obtained_weapons
 
 class Player():
     def __init__(self):
@@ -8,8 +9,11 @@ class Player():
         self.potions = 3
         # healing and health baased stuff
 
-        self.weaponDMG = 5
+        self.owned_weapons = ["Stick"] # undertale ahs
+        self.equiped_weapon = "Stick"
+        self.weapon_DMG = get_damage(self.equiped_weapon)
         self.wall_breaks = 2
+        
         self.items = {
             "Potions" : self.potions,
             "Weapon Damage" : self.weaponDMG, # change this to the chestloot weapon name, and then make a func that can translate name to dmg
