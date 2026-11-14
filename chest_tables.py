@@ -43,6 +43,12 @@ def select_chest(luck, misfortune, chest_type = "basic"):
             print("This is impossible, you should've never seen this")
 
     elif chest_type == "lucky":
-        # this is so annoying but i can only code in these stupid little bursts bc i keep getting called for rounds, and thats gonna make the cute nice hackatime gradient map thing look so ugly, ts pmo
         pass
     # for now, i dont think lucky/misfortune chests will be implemented until I can make an armor system kinda thing
+
+class Chest:
+    def __init__(self):
+        pass
+
+    def roll_chest_type(self, force_load):
+        pass

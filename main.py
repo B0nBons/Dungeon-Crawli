@@ -1,4 +1,6 @@
 # HAHAHA GOODBYE PLAYSOUND I HATE YOU import playsound
+# wish me luck, i gotta code on my phone 
+# this might be the worst thign ive ever done
 from maze import make_maze, show_maze, init_maze, breakable_wall, change_maze_dims, MAZE_WIDTH, MAZE_HEIGHT
 from log import terminal
 from player import Player
@@ -11,6 +13,10 @@ player_startX = 1
 player_startY = 1
 exit_X = MAZE_WIDTH - 2
 exit_Y = MAZE_HEIGHT - 2
+# so i think the way for the player start and exit is gonna be bfs search, since that allegedly finds longest path, and we always want the lingest path
+# also becaus it would be fun to have dynamic start and end points
+# or this could actually be like commecting levels, and "level ups" are just going to a floor above??
+# idk wrte gonna put a pin innit
 
 def new_dungeon():
     return breakable_wall(make_maze(init_maze()))

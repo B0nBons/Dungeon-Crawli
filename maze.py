@@ -73,6 +73,28 @@ def breakable_wall(maze):
             break
     return maze
 
+def bfs_exit(maze, startx, starty):
+    # i hate x and y
+    directions = [[0, -1], [-1, 0], [0, 1], [1, 0]]
+    checked_path = []
+    LONGEST = []
+    q = []
+    q.append([[startx, starty]])
+    while len(q) != 0:
+        path = q
+        update = []
+        for i in range(1, len(q)):
+            update.append(q[i])
+        q = update
+
+    spot = path[(len(path) - 1)]
+
+    print(q)
+    print(update)
+    print(path)
+    # ngl i kinda have no idea what im doing, and this honestly barely works, so im just gonna implement something else fn
+    
+
 def show_maze(player_x, player_y, exit_x, exit_y, maze):
     for y in range(MAZE_HEIGHT):
         location = ""
