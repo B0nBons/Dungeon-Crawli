@@ -13,7 +13,7 @@ class Player():
         self.equiped_weapon = "Stick"
         self.weapon_DMG = get_damage(self.equiped_weapon)
         self.wall_breaks = 2
-        
+
         self.items = {
             "Potions" : self.potions,
             "Weapon Damage" : self.weaponDMG, # change this to the chestloot weapon name, and then make a func that can translate name to dmg
@@ -55,6 +55,9 @@ class Player():
         elif self.potions <= 0:
             print(f"You have no potions.")
         self.potions -= 1
+
+# i literally just realised how freaking much code i put for all of this
+# i REALLY tried to cover EVERY single case wtf
 
     def wall_break(self, targetx, targety, maze):
         if self.wall_breaks == 1:
@@ -117,3 +120,30 @@ class Player():
                 print(f"You picked up {amount_add} {add_item}.")
         # NOTE PLEASE OH PLEASE REMOVE ALL MY SILLY AHS COMMENTS
         # NOTE I ALSO NEED TO SETTLE ON A CRAFTING SYSTEM
+
+def get_weapon(self, weapon):
+    if weapon in self.owned_weapons:
+        print("You have no reason to add more weight to your bag.")
+        # ok so i think weapons are just gonna be infinite durability since im lazy
+        return False
+    elif weapon not in weapons:
+        print("...This doesn't even exist.")
+        return False
+    else:
+        print(f"You picked up a {weapon}!")
+        print(f"Damage: {weapons[weapon]['damage']}. {weapons[weapon]['rarity']}")
+        self.owned_weapons.append(weapon)
+        weapons[weapon]['obtained'] = True
+        return True
+
+def show_equipped_tool(self, tool):
+    print("- - - - - -")
+    if tool in weapons:
+        print(f"Weapon: {self.equipped_weapon}")
+        print(F"Damage: {self.weapon_DMG}")
+    else:
+        #print(f"Pickaxe: {}")
+        # hashtag bc we dont actually have a pickaxe catalog
+    print("- - - - - -")
+    # ok so theres no self.rarity so this is gonna be an add later 
+    # print(f"Rarity: {self})
