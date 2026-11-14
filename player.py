@@ -16,7 +16,8 @@ class Player():
 
         self.items = {
             "Potions" : self.potions,
-            "Weapon Damage" : self.weaponDMG, # change this to the chestloot weapon name, and then make a func that can translate name to dmg
+            "Weapon" : self.equiped_weapon, # change this to the chestloot weapon name, and then make a func that can translate name to dmg
+            "Weapon Damage" : self.weapon_DMG,
             "Pickaxe Durability" : self.wall_breaks # make keys cap so they print nice and i dont have to deal with it
         }
         # general stuff that idk how to categorize
@@ -96,54 +97,68 @@ class Player():
             return False
         # I know the amount of return False statements is almost excessive, but theres genuinely no other way than that to make sure the player doesnt become a ghost and just walk through walls
 
-    def inventory(self, add_item=False, remove_item=False, amount_add = 1, amount_remove = 1):
-        # if both keyargs are false, then assume player is gonna check inv
-        if add_item == False and remove_item == False:
-            for key, val in self.items.items(): # top ten WORST names omg
-                print(f"{key} : {val}")
+        # might make add/remove into a seperate func since this is kinda a nuisance to use
+        # okay so i figured out why it doesnt work, so im actually just gonna make seperate add/remove functions
 
-        if add_item == False and remove_item == True:
-            if remove_item in self.items and self.items[remove_item] >= amount_remove:
-                if (self.items[remove_item] - amount_remove) == 0:
-                    print(f"You dropped your last {remove_item}.")
-                    del self.items(remove_item)
-            else:
-                self.items[remove_item] -= amount_remove
-                print(f"You drop {amount_remove} {remove_item}. You now hold {self.items[remove_item]} {remove_item}.")
+    def add_to_inv(self, item, amount_add):
+        if item in self.items:
+            self.items[item] += amount_add
+            print(f"You pick up {amount_add} {item}")
+        elif item not in self.items:
+            self.items[item] = amount_add
+            print(f"You pick up {amount_add} {item}")
 
-        if add_item == True and remove_item == False:
-            if add_item in self.items:
-                self.items[add_item] += amount_add
-                print(f"You picked up {amount_add} {add_item}.")
-            elif add_item not in self.items:
-                self.items[add_item] = amount_add
-                print(f"You picked up {amount_add} {add_item}.")
-        # NOTE PLEASE OH PLEASE REMOVE ALL MY SILLY AHS COMMENTS
-        # NOTE I ALSO NEED TO SETTLE ON A CRAFTING SYSTEM
+    def remove_from_inv(self, item, amount_del):
+        if item in self.items:
+            if (self.items[item] - amount_del) > 0:
+                self.items[item] -= amount_del
+                print(f"You drop {amount_del} {item}, you have {self.items[item]} left")
+            elif (self.items[item] - amount_del) == 0:
+                self.items[item] = 0
+                print(f"You drop your last {item}, you now have 0")
+            elif (self.items[item] - amount_del) < 0:
+                print(f"You do not have enough {item} to drop {amount_del}")
+        else:
+            print(f"You seemingly do not possess {item}")
+# ok guys i swear ill test my code from now on, ts horrid
 
-def get_weapon(self, weapon):
-    if weapon in self.owned_weapons:
-        print("You have no reason to add more weight to your bag.")
-        # ok so i think weapons are just gonna be infinite durability since im lazy
-        return False
-    elif weapon not in weapons:
-        print("...This doesn't even exist.")
-        return False
-    else:
-        print(f"You picked up a {weapon}!")
-        print(f"Damage: {weapons[weapon]['damage']}. {weapons[weapon]['rarity']}")
-        self.owned_weapons.append(weapon)
-        weapons[weapon]['obtained'] = True
-        return True
+    def show_inv(self):
+        print("✧──────────✧──────────✧")
+        for key, val in self.items.items():
+            print(f"{key} : {val}")
+        print("✧──────────✧──────────✧")
+# kinda wish these could be lil containers, but thats ok for now
+# rip inventory, 2026-2026
 
-def show_equipped_tool(self, tool):
-    print("- - - - - -")
-    if tool in weapons:
+    def get_weapon(self, weapon):
+        if weapon in self.owned_weapons:
+            print("You have no reason to add more weight to your bag.")
+            # ok so i think weapons are just gonna be infinite durability since im lazy
+            return False
+        elif weapon not in weapons:
+            print("...This doesn't even exist.")
+            return False
+        else:
+            print(f"You picked up a {weapon}!")
+            print(f"Damage: {weapons[weapon]['damage']}. {weapons[weapon]['rarity']}")
+            self.owned_weapons.append(weapon)
+            weapons[weapon]['obtained'] = True
+            return True
+
+    def show_equipped_tool(self):
+        print("- - - - - -")
         print(f"Weapon: {self.equipped_weapon}")
         print(F"Damage: {self.weapon_DMG}")
-    else:
-        #print(f"Pickaxe: {}")
-        # hashtag bc we dont actually have a pickaxe catalog
-    print("- - - - - -")
-    # ok so theres no self.rarity so this is gonna be an add later 
-    # print(f"Rarity: {self})
+        print("- - - - - -")
+
+   #  print(f"Tool: {self.}") dont have seperate tools in so has to be added later
+
+# ok now all of this below is gonna be test stuff to make sure im not gonna have a crisis later on testing
+
+p = Player()
+p.show_inv()
+p.add_to_inv("Crunchy Taco", 1)
+p.show_inv()
+p.remove_from_inv("Crunchy Taco", 1)
+
+# CHANGE INVENTORY TO SHOW SPECIFIC WEAPON
