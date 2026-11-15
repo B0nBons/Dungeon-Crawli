@@ -29,6 +29,22 @@ def move_enemies(enemies, maze):
             [-1, 0] # I FOUND YOU STUPID BUG
         ]
         move = random.choice(moveto)
-        if maze[y + move[1]][x + move[0]] == " ":
+        if maze[y + move[1]][x + move[0]] == " " or maze[y + move[1]][x + move[0]] == "  ":
             foe[0] += move[0]
             foe[1] += move[1]
+        elif maze[y + move[1]][x + move[0]] != " " or maze[y+move[1]][x + move[0]] != "  ":
+            moved = False
+            attempts = 5
+            done = 0
+            while moved == False:
+                move = random.choice(moveto)
+                for i in range(attempts):
+                    if maze[y + move[1]][x + move[0]] == " " or maze[y + move[1]][x + move[0]] == "  ":
+                        foe[0] += move[0]
+                        foe[1] += move[1]
+                        moved = True
+                        break
+                done += 1
+
+                if done == attempts:
+                    break

@@ -111,7 +111,7 @@ def show_maze(player_x, player_y, exit_x, exit_y, maze, enemies):
             elif maze[y][x] == "C":
                 location += "C "
                 # so i tried for a bit and for SOME reason, the font in my vscode refuses to render it as a two block thing ???
-            elif x in enemies and y in enemies:
+            elif [x, y] in enemies: # bc it was checking for an int vs list, now its lsit v list
                 location += "% "
             else:
                 location += "  "

@@ -101,10 +101,11 @@ def mainLoop():
                 player_startX = attempt_moveX
                 player_startY = attempt_moveY
                 turns += 1
-            move_enemies(enemies, maze)
 
             if little_timmy.alive != True:
                 break
+            
+            move_enemies(enemies, maze)
 
         if little_timmy.alive == False:
             print("GAME OVER") # lol
