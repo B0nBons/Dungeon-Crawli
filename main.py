@@ -2,6 +2,7 @@
 # wish me luck, i gotta code on my phone 
 # this might be the worst thign ive ever done
 from maze import make_maze, show_maze, init_maze, breakable_wall, change_maze_dims, chest_gen, MAZE_WIDTH, MAZE_HEIGHT
+from enemies import enemy_gen, move_enemies
 from log import terminal
 from player import Player
 import random
@@ -34,6 +35,7 @@ def mainLoop():
         # something like next level screen
         # change_maze_dims(2,2)
         maze = new_dungeon()
+        enemies = enemy_gen(maze)
         level_completed = False
         player_startX = 1
         player_startY = 1
@@ -42,7 +44,7 @@ def mainLoop():
             level_completed = False
 
         while True:
-            show_maze(player_startX, player_startY, exit_X, exit_Y, maze)
+            show_maze(player_startX, player_startY, exit_X, exit_Y, maze, enemies)
             terminal(little_timmy, turns, level)
             
             # now i get why we want short variable names, my fingers HURT
@@ -93,14 +95,13 @@ def mainLoop():
                 print("You stumble upon a chest...")
                 gold = random.randint(3, 25)
                 print(f"You found {gold} gold from the chest!")
-                little_timmy.add_to_inv("Gold" gold)
+                little_timmy.add_to_inv("Gold", gold)
 
             if DONOTMOVE != True and WALL_BROKEN == None:
                 player_startX = attempt_moveX
                 player_startY = attempt_moveY
                 turns += 1
-            elif WALL_BROKEN == False:
-                pass
+            move_enemies(enemies, maze)
 
             if little_timmy.alive != True:
                 break

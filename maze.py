@@ -95,7 +95,7 @@ def bfs_exit(maze, startx, starty):
     # ngl i kinda have no idea what im doing, and this honestly barely works, so im just gonna implement something else fn
     
 
-def show_maze(player_x, player_y, exit_x, exit_y, maze):
+def show_maze(player_x, player_y, exit_x, exit_y, maze, enemies):
     for y in range(MAZE_HEIGHT):
         location = ""
         for x in range(MAZE_WIDTH):
@@ -111,6 +111,8 @@ def show_maze(player_x, player_y, exit_x, exit_y, maze):
             elif maze[y][x] == "C":
                 location += "C "
                 # so i tried for a bit and for SOME reason, the font in my vscode refuses to render it as a two block thing ???
+            elif x in enemies and y in enemies:
+                location += "% "
             else:
                 location += "  "
         print(location)
@@ -120,7 +122,7 @@ def chest_gen(maze, amount): # amount of chests
     for y in range(1, MAZE_HEIGHT):
         for x in range(1, MAZE_WIDTH):
             if maze[y][x] == "B" or maze[y][x] == "O": # just bc i dont remember if it was 1/2 spaces
-                if x != 1 and y != 1:
+                if x != 1 and y != 1 and x != 0 and y != 0 and y != (MAZE_HEIGHT - 1):
                     allowed.append([x, y])
     random.shuffle(allowed)
     CHOSEN = random.sample(allowed, amount)
