@@ -9,7 +9,7 @@ def terminal(character, turns, level):
     print(f"Turn {turns}")
     print(f"Current HP: {character.health}")
     print(f"Current Potions: {character.potions}")
-    print(f"Current Weapon Damage: {character.weaponDMG}")
+    print(f"Current Weapon Damage: {character.weapon_DMG}")
     print(f"Pickaxe Durability: {character.wall_breaks}")
     print("-" * 50)
 

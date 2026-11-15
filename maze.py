@@ -1,7 +1,7 @@
 import random
 
-MAZE_WIDTH = 13
-MAZE_HEIGHT = 13
+MAZE_WIDTH = 25
+MAZE_HEIGHT = 25
 # ok so testing maze size is gonna be 25 since otherwise it wont fit on my screen
 # Maze should always be >15 otherwise the mazes genuinely suck
 # so we are in fact gonna have the maze be a MINUMUIM of 51 because i wanna add lots of stuff
@@ -108,7 +108,22 @@ def show_maze(player_x, player_y, exit_x, exit_y, maze):
                 location += "▩ " # idk man looked cute
             elif maze[y][x] == "B":
                 location += "▢▢"
+            elif maze[y][x] == "C":
+                location += "C "
                 # so i tried for a bit and for SOME reason, the font in my vscode refuses to render it as a two block thing ???
             else:
                 location += "  "
         print(location)
+
+def chest_gen(maze, amount): # amount of chests
+    allowed = []
+    for y in range(1, MAZE_HEIGHT):
+        for x in range(1, MAZE_WIDTH):
+            if maze[y][x] == "B" or maze[y][x] == "O": # just bc i dont remember if it was 1/2 spaces
+                if x != 1 and y != 1:
+                    allowed.append([x, y])
+    random.shuffle(allowed)
+    CHOSEN = random.sample(allowed, amount)
+    for x, y in CHOSEN:
+        maze[y][x] = "C" # for chest
+    return maze

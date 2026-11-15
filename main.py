@@ -1,9 +1,10 @@
 # HAHAHA GOODBYE PLAYSOUND I HATE YOU import playsound
 # wish me luck, i gotta code on my phone 
 # this might be the worst thign ive ever done
-from maze import make_maze, show_maze, init_maze, breakable_wall, change_maze_dims, MAZE_WIDTH, MAZE_HEIGHT
+from maze import make_maze, show_maze, init_maze, breakable_wall, change_maze_dims, chest_gen, MAZE_WIDTH, MAZE_HEIGHT
 from log import terminal
 from player import Player
+import random
 
 # it is now printing something, but not enough of something
 
@@ -19,7 +20,7 @@ exit_Y = MAZE_HEIGHT - 2
 # idk wrte gonna put a pin innit
 
 def new_dungeon():
-    return breakable_wall(make_maze(init_maze()))
+    return chest_gen(breakable_wall(make_maze(init_maze())), 3) # 3 is the num of chests
 # to make it actually playable and a loop, we need to have a func that can just spam mazes
 
 # this is the MAIN game loop (we love while true)
@@ -72,7 +73,7 @@ def mainLoop():
                 # no clue why but potions incr turn count by 2???? i cant figure out where the other turn count incr is
 
             if movement == "i": # i should rename movement bc its not even movemnt now, its just all the funcs lmao
-                little_timmy.inventory()
+                little_timmy.show_inv()
                 garb = input("Press enter to continue...")
                 # ok so i have NO clue why, but for some reason the turn count increases after you check inv??????
 
@@ -87,6 +88,12 @@ def mainLoop():
                 if little_timmy.wall_break(attempt_moveX, attempt_moveY, maze) == False:
                     WALL_BROKEN = False
                 # seems i overadded turns in many spots
+
+            if maze[attempt_moveY][attempt_moveX] == "C":
+                print("You stumble upon a chest...")
+                gold = random.randint(3, 25)
+                print(f"You found {gold} gold from the chest!")
+                little_timmy.add_to_inv("Gold" gold)
 
             if DONOTMOVE != True and WALL_BROKEN == None:
                 player_startX = attempt_moveX
