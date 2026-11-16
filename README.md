@@ -29,6 +29,8 @@ As soon as you run the binary, you'll see a little flower stuck in a maze. That 
 
 ▩ - This is a wall. Sadly, your game character still hasn't learned how to walk through walls, so they must be avoided.
 ▢ - Depending on your font, these will either render as two, narrow boxes (which you can see in the image above), or as two normal, square sized boxes. You CAN break these. However, you must decide when breaking them would benefit you, as you are only able to break two of these walls total.
+% - This is an ENEMY. Currently, they don't attack you, so treat them as nice little travelers to run into!
+E - This is the EXIT for your level. 
 
 Currently, the game does have an inventory system, as well as math logic for loot from chests. Due to personal stuff, I wasn't able to fully implement that, but they will be implemented in the next version! For now, this acts as an infinite maze generator- is there a chance that you'll see the same maze? Yes, however it is EXTREMELY unlikely. You also have potions that you can drink, if you'd like to waste a turn (potions will be very relevant later). 
 
