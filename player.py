@@ -155,11 +155,4 @@ class Player():
    #  print(f"Tool: {self.}") dont have seperate tools in so has to be added later
 
 # ok now all of this below is gonna be test stuff to make sure im not gonna have a crisis later on testing
-
-p = Player()
-p.show_inv()
-p.add_to_inv("Crunchy Taco", 1)
-p.show_inv()
-p.remove_from_inv("Crunchy Taco", 1)
-p.show_equipped_tool()
 # CHANGE INVENTORY TO SHOW SPECIFIC WEAPON
